@@ -1,0 +1,5 @@
+[
+  {"id": "T-1001", "category": "webhook_delivery_failure", "priority": "P2", "owner_queue": "customer_engineering"},
+  {"id": "T-1002", "category": "api_auth_integration_error", "priority": "P2", "owner_queue": "customer_engineering"},
+  {"id": "T-1003", "category": "how_to_feature_request", "priority": "P4", "owner_queue": "docs"}
+]
