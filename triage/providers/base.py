@@ -3,11 +3,12 @@
 The classifier only ever calls `classify()`. That is what makes providers
 swappable: adding a new vendor means adding one new class here, nothing else.
 """
+from abc import ABC, abstractmethod
 
-
-class LLMProvider:
-    name = "base"
+class LLMProvider(ABC):
+    @abstractmethod
 
     def classify(self, prompt: str) -> str:
-        """Send the prompt to the model and return its raw text answer."""
-        raise NotImplementedError
+        """Sends the prompt to the large language model and returns the model’s text answer as is."""
+        pass
+
