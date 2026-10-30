@@ -1,5 +1,202 @@
-[
-  {"id": "T-1001", "category": "webhook_delivery_failure", "priority": "P2", "owner_queue": "customer_engineering"},
-  {"id": "T-1002", "category": "api_auth_integration_error", "priority": "P2", "owner_queue": "customer_engineering"},
-  {"id": "T-1003", "category": "how_to_feature_request", "priority": "P4", "owner_queue": "docs"}
-]
+{
+  "T-1001": {
+    "category": "card_auth_decline",
+    "priority": "P3",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1002": {
+    "category": "card_auth_decline",
+    "priority": "P3",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1003": {
+    "category": "card_auth_decline",
+    "priority": "P2",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1004": {
+    "category": "card_auth_decline",
+    "priority": "P3",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1005": {
+    "category": "card_auth_decline",
+    "priority": "P3",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1006": {
+    "category": "webhook_delivery_failure",
+    "priority": "P3",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1007": {
+    "category": "webhook_delivery_failure",
+    "priority": "P3",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1008": {
+    "category": "api_auth_integration_error",
+    "priority": "P2",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1009": {
+    "category": "api_auth_integration_error",
+    "priority": "P3",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1010": {
+    "category": "webhook_delivery_failure",
+    "priority": "P3",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1011": {
+    "category": "api_auth_integration_error",
+    "priority": "P2",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1012": {
+    "category": "api_auth_integration_error",
+    "priority": "P2",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1013": {
+    "category": "api_auth_integration_error",
+    "priority": "P2",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1014": {
+    "category": "api_auth_integration_error",
+    "priority": "P3",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1015": {
+    "category": "api_auth_integration_error",
+    "priority": "P3",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1016": {
+    "category": "stablecoin_transfer_settlement_delay",
+    "priority": "P2",
+    "owner_queue": "payments_ops"
+  },
+  "T-1017": {
+    "category": "stablecoin_transfer_settlement_delay",
+    "priority": "P2",
+    "owner_queue": "payments_ops"
+  },
+  "T-1018": {
+    "category": "stablecoin_transfer_settlement_delay",
+    "priority": "P2",
+    "owner_queue": "payments_ops"
+  },
+  "T-1019": {
+    "category": "stablecoin_transfer_settlement_delay",
+    "priority": "P3",
+    "owner_queue": "payments_ops"
+  },
+  "T-1020": {
+    "category": "stablecoin_transfer_settlement_delay",
+    "priority": "P2",
+    "owner_queue": "payments_ops"
+  },
+  "T-1021": {
+    "category": "platform_outage_latency",
+    "priority": "P1",
+    "owner_queue": "plat_eng_oncall"
+  },
+  "T-1022": {
+    "category": "platform_outage_latency",
+    "priority": "P1",
+    "owner_queue": "plat_eng_oncall"
+  },
+  "T-1023": {
+    "category": "platform_outage_latency",
+    "priority": "P1",
+    "owner_queue": "plat_eng_oncall"
+  },
+  "T-1024": {
+    "category": "platform_outage_latency",
+    "priority": "P3",
+    "owner_queue": "plat_eng_oncall"
+  },
+  "T-1025": {
+    "category": "platform_outage_latency",
+    "priority": "P3",
+    "owner_queue": "plat_eng_oncall"
+  },
+  "T-1026": {
+    "category": "kyc_compliance_hold",
+    "priority": "P3",
+    "owner_queue": "compliance"
+  },
+  "T-1027": {
+    "category": "kyc_compliance_hold",
+    "priority": "P3",
+    "owner_queue": "compliance"
+  },
+  "T-1028": {
+    "category": "kyc_compliance_hold",
+    "priority": "P3",
+    "owner_queue": "compliance"
+  },
+  "T-1029": {
+    "category": "kyc_compliance_hold",
+    "priority": "P2",
+    "owner_queue": "compliance"
+  },
+  "T-1030": {
+    "category": "kyc_compliance_hold",
+    "priority": "P2",
+    "owner_queue": "compliance"
+  },
+  "T-1031": {
+    "category": "how_to_feature_request",
+    "priority": "P4",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1032": {
+    "category": "how_to_feature_request",
+    "priority": "P4",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1033": {
+    "category": "how_to_feature_request",
+    "priority": "P4",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1034": {
+    "category": "how_to_feature_request",
+    "priority": "P4",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1035": {
+    "category": "how_to_feature_request",
+    "priority": "P4",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1036": {
+    "category": "how_to_feature_request",
+    "priority": "P4",
+    "owner_queue": "tech_support_engr_oncall"
+  },
+  "T-1037": {
+    "category": "card_auth_decline",
+    "priority": "P1",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1038": {
+    "category": "webhook_delivery_failure",
+    "priority": "P2",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1039": {
+    "category": "card_auth_decline",
+    "priority": "P3",
+    "owner_queue": "customer_engineering_oncall"
+  },
+  "T-1040": {
+    "category": "api_auth_integration_error",
+    "priority": "P1",
+    "owner_queue": "tech_support_engr_oncall"
+  }
+}

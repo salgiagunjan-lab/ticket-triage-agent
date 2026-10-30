@@ -1,23 +1,282 @@
 [
   {
     "id": "T-1001",
-    "partner": "partner_alpha",
-    "subject": "Webhooks stopped arriving",
-    "body": "Since about 09:10 UTC we are not receiving card.authorized webhooks. Our endpoint logs show nothing. Request ID from your dashboard: req_8f2a.",
-    "created_at": "2026-10-05T09:42:00Z"
+    "partner": "Larkspur Bank",
+    "subject": "Cardholder declined twice at grocery store",
+    "body": "Hi team,\n\nOne of our cardholders (token crd_7c21e) was declined twice today at a grocery store, about 10 minutes apart. Funds are available on our side, the balance is well above the purchase amount. In the dashboard the decline reason shows response code 65.\n\nOther cards for the same customer worked fine this afternoon. Could you tell us why this one was declined and whether we need to change a limit on our end?\n\nThanks,\nPriya",
+    "created_at": "2026-10-05T15:22:00Z"
   },
   {
     "id": "T-1002",
-    "partner": "partner_beta",
-    "subject": "401 on every API call after key rotation",
-    "body": "We rotated our API key this morning and now every call to /v1/cards returns 401 Unauthorized. Sandbox works fine.",
-    "created_at": "2026-10-05T10:05:00Z"
+    "partner": "Fennel Pay",
+    "subject": "Card declined at gas station",
+    "body": "Card crd_88f0a declined at a gas station, reason code 05. Customer is standing at the pump. Please advise.",
+    "created_at": "2026-10-05T22:48:00Z"
   },
   {
     "id": "T-1003",
-    "partner": "partner_gamma",
-    "subject": "How do I issue a virtual card?",
-    "body": "Is there a guide for issuing virtual cards to new users? We could not find it in the docs.",
-    "created_at": "2026-10-05T10:20:00Z"
+    "partner": "Marlow Wallet",
+    "subject": "All our cardholders declined at one online travel merchant",
+    "body": "Hello,\n\nSince yesterday evening every cardholder who tries to pay at Skyline Travel Online gets declined. It is only this merchant, other online purchases succeed normally. We have 9 complaints so far and our support queue is filling up.\n\nSample from our authorization log:\n\n2026-10-06T13:41:07Z auth_id=aut_41d9 card=crd_1a77 merchant=\"Skyline Travel Online\" mcc=4722 amount=412.00 currency=USD response=57 reason=transaction_not_permitted\n2026-10-06T13:52:31Z auth_id=aut_41f3 card=crd_9b02 merchant=\"Skyline Travel Online\" mcc=4722 amount=1180.50 currency=USD response=57 reason=transaction_not_permitted\n2026-10-06T14:05:12Z auth_id=aut_4207 card=crd_5e6c merchant=\"Skyline Travel Online\" mcc=4722 amount=96.00 currency=USD response=57 reason=transaction_not_permitted\n\nWe have not changed our card program configuration in the last 30 days. Did something change on your side for travel agencies (MCC 4722)? We need to know whether this is intended before we tell customers anything.\n\nRegards,\nDaniel Okafor\nPayments Operations, Marlow Wallet",
+    "created_at": "2026-10-06T14:20:00Z"
+  },
+  {
+    "id": "T-1004",
+    "partner": "Tidewater Credit",
+    "subject": "Contactless declines abroad",
+    "body": "Hi, three of our cardholders traveling in Portugal this week report that tap-to-pay is declined at shops, while chip and PIN works. In our dashboard the declines show reason code 05, do not honor. No other cardholders seem affected.\n\nIs there a fraud rule or country setting we should check? Not urgent for us but the customers are a bit annoyed.\n\nThanks!\nMei",
+    "created_at": "2026-10-07T09:10:00Z"
+  },
+  {
+    "id": "T-1005",
+    "partner": "Brightloop Finance",
+    "subject": "Sandbox test card declined",
+    "body": "hey, sandbox: the test card from your docs gets declined on a $1.00 authorization, response 14 invalid card number. we are trying to finish our integration demo for friday. prod is fine. can u check if the sandbox test cards changed?",
+    "created_at": "2026-10-07T17:35:00Z"
+  },
+  {
+    "id": "T-1006",
+    "partner": "Copperleaf Money",
+    "subject": "Missing card.settled webhooks since Oct 8",
+    "body": "Hi support,\n\nWe stopped receiving card.settled webhooks around 02:00 UTC on Oct 8. card.authorized events are still arriving fine, so the endpoint itself is reachable. Our reconciliation job is now behind because it relies on the settled events.\n\nFrom our server logs (endpoint /webhooks/payments):\n\n2026-10-08T01:58:44Z POST /webhooks/payments 200 event=card.authorized id=evt_a1c3\n2026-10-08T01:59:12Z POST /webhooks/payments 200 event=card.authorized id=evt_a1c4\n(no card.settled requests after this point)\n\nIn your dashboard under Webhooks > Deliveries I can see card.settled deliveries marked \"pending retry\" with attempt count 7. We never see the requests on our side.\n\nWe checked our WAF and nothing is blocking your IP ranges. Can you tell us what is happening to those deliveries and re-send the missed events once fixed? About 1,900 settled events are missing as of now.\n\nThanks,\nTomas Reyes\nCopperleaf Money Engineering",
+    "created_at": "2026-10-09T08:05:00Z"
+  },
+  {
+    "id": "T-1007",
+    "partner": "Quillfinch Labs",
+    "subject": "Your retries are hammering our endpoint",
+    "body": "We deployed a bad build and our webhook endpoint returned 503 for about 40 minutes (09:10 to 09:50 UTC). Now you are retrying and the backlog is hitting our servers all at once. Can you pause deliveries for 30 minutes, or tell us the retry schedule so we can plan capacity? Request id for the first failure: req_c07d.",
+    "created_at": "2026-10-09T10:15:00Z"
+  },
+  {
+    "id": "T-1008",
+    "partner": "Halden Neobank",
+    "subject": "Webhook signature verification failing",
+    "body": "Since we rotated our webhook signing secret yesterday our verification fails on every event. We compute HMAC-SHA256 of the raw body with the new secret and compare against the X-Signature header. It never matches. Example from one event:\n\nheader:   t=1760004112,v1=5d41c3f9e0a7b2c8\ncomputed: 7a93e0c4b15d6f20\n\nDid the secret rotation propagate on your side? Or is the signature format different from the docs (do we need to include the timestamp prefix in the signed payload)? Our handler rejects the events with 401, so everything is queued.",
+    "created_at": "2026-10-10T11:30:00Z"
+  },
+  {
+    "id": "T-1009",
+    "partner": "Pinecrest Payments",
+    "subject": "Duplicate card.authorized events",
+    "body": "We are seeing the same event delivered twice. evt_5d20 and evt_5d21 both carry auth_id aut_9917 and identical payloads, about 3 seconds apart. It has happened for roughly 5% of authorizations since Monday. Our handler is not idempotent so we double-posted a few holds on cardholder balances (fixed manually).\n\nIs this expected behavior? Should we dedupe on auth_id?",
+    "created_at": "2026-10-11T13:00:00Z"
+  },
+  {
+    "id": "T-1010",
+    "partner": "Orchard & Vine Cards",
+    "subject": "Sandbox webhooks not arriving",
+    "body": "Webhooks to https://hooks.orchardvine.example/payments are not arriving in sandbox. Prod is fine.",
+    "created_at": "2026-10-08T19:45:00Z"
+  },
+  {
+    "id": "T-1011",
+    "partner": "Saltmarsh Fintech",
+    "subject": "401 after rotating API key",
+    "body": "Hello,\n\nWe rotated our production API key this morning following the process in the docs and now every call from our back-office tool returns 401. We updated the key in our secrets manager and redeployed.\n\n$ curl -i https://api.paymentsplatform.example/v1/cards/crd_3d19 -H \"Authorization: Bearer sk_live_REDACTED\"\nHTTP/1.1 401 Unauthorized\nx-request-id: req_71be\n{\"error\":{\"code\":\"invalid_api_key\",\"message\":\"The provided API key is not valid.\"}}\n\nCustomer card payments are not affected. It is our back-office calls (card freezes, limit changes) that fail. Can you check whether the old key was revoked before the new one was activated?",
+    "created_at": "2026-10-10T07:55:00Z"
+  },
+  {
+    "id": "T-1012",
+    "partner": "Juniper Ledger",
+    "subject": "403 on POST /v1/cards in production",
+    "body": "Same key, same payload: 201 in sandbox, 403 in production.\n\nResponse: {\"error\":{\"code\":\"forbidden\",\"message\":\"Key lacks scope cards:create\"}}\nRequest ID: req_e4a8\n\nWe were told at go-live that all scopes would be enabled. Can you check the key scopes on our production app?",
+    "created_at": "2026-10-08T14:35:00Z"
+  },
+  {
+    "id": "T-1013",
+    "partner": "Kestrel Remit",
+    "subject": "400 when creating cardholders",
+    "body": "Creating a cardholder started failing with 400 yesterday. Nothing changed in our code as far as I can tell.\n\nRequest:\nPOST /v1/cardholders\n{\"first_name\":\"Ana\",\"last_name\":\"Silva\",\"email\":\"ana@mailbox.example\",\"billing_address\":{\"line1\":\"12 Rua Exemplo\",\"city\":\"Lisbon\",\"country\":\"PT\"}}\n\nResponse (400):\n{\"error\":{\"code\":\"validation_error\",\"message\":\"Invalid request\",\"details\":[{\"field\":\"billing_address.postal_code\",\"issue\":\"required\"}]}}\n\nThe docs page for cardholders does not list postal_code as required for PT. Is this a new rule? If yes please update the docs. We get about 200 signups per day and they all hit this.",
+    "created_at": "2026-10-10T15:50:00Z"
+  },
+  {
+    "id": "T-1014",
+    "partner": "Ironbark Pay",
+    "subject": "Python SDK crashes after upgrade",
+    "body": "After upgrading the Python SDK from 2.3.1 to 2.4.0 we get this on every call:\n\nTraceback (most recent call last):\n  File \"app/payments.py\", line 58, in create_transfer\n    resp = client.transfers.create(amount=amount, currency=\"USDC\", destination=dest)\n  File \".../sdk/resources/transfers.py\", line 112, in create\n    return self._post(\"/v1/transfers\", json=body, idempotency_key=idempotency_key)\nTypeError: _post() got an unexpected keyword argument 'idempotency_key'\n\nPinning back to 2.3.1 fixes it. Python 3.11. Staging only so far. Looks like a bug in 2.4.0?",
+    "created_at": "2026-10-12T10:40:00Z"
+  },
+  {
+    "id": "T-1015",
+    "partner": "Windmere Digital",
+    "subject": "409 on idempotent retries",
+    "body": "We retry transfer creation on timeouts with the same Idempotency-Key, as the docs recommend. About 1 in 50 retries returns 409 idempotency_key_in_use instead of the original response. Original request req_b930, retry req_b93f.\n\nShould we wait before retrying, or is the 409 our signal that the first request succeeded?",
+    "created_at": "2026-10-11T16:25:00Z"
+  },
+  {
+    "id": "T-1016",
+    "partner": "Zephyr Stablepay",
+    "subject": "Offramp transfer pending for 36 hours",
+    "body": "Offramp transfer tr_0c5e8 has been in status \"pending\" since Oct 9 09:12 UTC. Amount is 25,000 USDC and the destination is our bank account on file, which we have used for offramps before without problems. Your docs say settlement takes 1 business day.\n\nThe on-chain transfer to your deposit address is confirmed:\n0x728d1087908ae8b177b922520c80123e5a2b2d90d93707c2901b8be8fac13a5e\n\nCan you tell us what it is waiting on?",
+    "created_at": "2026-10-10T21:00:00Z"
+  },
+  {
+    "id": "T-1017",
+    "partner": "Lumen Transfer",
+    "subject": "Deposit confirmed on-chain but not credited",
+    "body": "A customer sent 4,200 stablecoin to the deposit address assigned to account acct_7f3d. Hash:\n0x48e0982a7c87a4c20d24ca096a0e22dab76f3fd611adea4f49f59286fbf0a814\n\n14 confirmations on the explorer. The balance still shows 0 after 3 hours. The customer has a trade to settle today and is asking us for updates every few minutes.",
+    "created_at": "2026-10-07T12:30:00Z"
+  },
+  {
+    "id": "T-1018",
+    "partner": "Ashgrove Banking",
+    "subject": "Ledger vs statement mismatch for Oct 6",
+    "body": "Daily reconciliation for Oct 6 shows our ledger total as 2,884,310.12 and your statement total as 2,885,514.67. Difference: 1,204.55.\n\nWe went through the transaction list line by line and cannot find a missing entry. I can send both CSVs. Could you confirm whether any fee adjustments or reversals were posted after the cut-off?",
+    "created_at": "2026-10-08T07:50:00Z"
+  },
+  {
+    "id": "T-1019",
+    "partner": "Vantage Row Payments",
+    "subject": "Completed transfer has no transaction hash",
+    "body": "Transfer tr_91ab2 shows status \"completed\" in the API but the tx_hash field is null. Our customer's receiving wallet says nothing arrived. How can we prove the transfer went out? We need the hash.",
+    "created_at": "2026-10-09T18:05:00Z"
+  },
+  {
+    "id": "T-1020",
+    "partner": "Ridgeway Treasury",
+    "subject": "Large payout not settled before cutoff",
+    "body": "Our daily payout of 480,000 stablecoin (batch pay_2026_10_11) normally settles by 15:00 UTC. It is 18:30 and it is still pending. We have a contractor payroll run tomorrow morning that depends on these funds. No error on our side. Can someone check the status and give us an ETA?",
+    "created_at": "2026-10-11T18:35:00Z"
+  },
+  {
+    "id": "T-1021",
+    "partner": "Cobalt Money",
+    "subject": "502 on transfers",
+    "body": "POST /v1/transfers is returning 502 Bad Gateway since a few minutes ago. Error code upstream_connect_error. Request id req_2a91. Anyone else seeing this?",
+    "created_at": "2026-10-09T14:02:11Z"
+  },
+  {
+    "id": "T-1022",
+    "partner": "Meridian Pay",
+    "subject": "Getting 502s from the API",
+    "body": "Our transfer creation calls started failing at around 14:05 UTC.\n\n14:05:33 POST /v1/transfers -> 502 (upstream_connect_error) req_6c1d 1.2s\n14:06:10 POST /v1/transfers -> 502 (upstream_connect_error) req_6c20 1.1s\n14:07:48 POST /v1/transfers -> 502 (upstream_connect_error) req_6c2b 1.3s\n14:08:02 GET /v1/balances -> 200 req_6c2e 0.2s\n\nReads work, creating transfers does not. Retrying with backoff has not helped. Our payout queue is stuck.",
+    "created_at": "2026-10-09T14:09:40Z"
+  },
+  {
+    "id": "T-1023",
+    "partner": "Sable Neobank",
+    "subject": "URGENT - API down??",
+    "body": "URGENT: your API is down!!! all our transfers fail with 502 upstream_connect_error. customers cannot send money. we are escalating internally. we need an update in the next 15 minutes please",
+    "created_at": "2026-10-09T14:17:03Z"
+  },
+  {
+    "id": "T-1024",
+    "partner": "Fennel Pay",
+    "subject": "Latency spike on authorizations",
+    "body": "Since about 08:00 UTC the p95 response time of POST /v1/cards/{id}/authorize has gone from roughly 300 ms to around 4 seconds. Nothing is failing outright, but some merchant terminals time out at 5 seconds. Only the authorize endpoint is slow; /v1/balances is normal. Is there a known degradation?",
+    "created_at": "2026-10-08T09:20:00Z"
+  },
+  {
+    "id": "T-1025",
+    "partner": "Orchard & Vine Cards",
+    "subject": "Intermittent timeouts on balances",
+    "body": "About 1 in 5 requests to GET /v1/balances time out at our 10 second client limit since 08:00 UTC today. The rest are fast. Your status page shows all systems operational. Request ids of two timeouts: req_d3f1 and req_d3f8.",
+    "created_at": "2026-10-12T11:10:00Z"
+  },
+  {
+    "id": "T-1026",
+    "partner": "Hawthorn Money",
+    "subject": "User stuck in verification for 5 days",
+    "body": "End user usr_4c82 submitted a passport and proof of address on Oct 4. The status has been verification_pending for 5 days. Your docs say it normally takes up to 48 hours. The user has emailed us twice. Can you tell us if anything else is needed?",
+    "created_at": "2026-10-09T10:00:00Z"
+  },
+  {
+    "id": "T-1027",
+    "partner": "Larkspur Bank",
+    "subject": "Customer account frozen, rent due",
+    "body": "Hi, one of our customers (usr_91de) has had her account frozen since Friday with no explanation. Her rent is due on the 15th and all her money is in the account. She called us in tears. We cannot tell her anything because the dashboard just says compliance_hold.\n\nPlease tell us what is needed to release it, or at least what we can tell her.",
+    "created_at": "2026-10-12T14:00:00Z"
+  },
+  {
+    "id": "T-1028",
+    "partner": "Brightloop Finance",
+    "subject": "Selfie rejected four times",
+    "body": "A user keeps failing the selfie step. The rejection reason is image_too_blurry every time. We tried it ourselves in good light and it passes. Four attempts logged for usr_20f6 (ver_a1, ver_a2, ver_a3, ver_a4). Maybe their phone camera? Is there a manual review option?",
+    "created_at": "2026-10-06T16:40:00Z"
+  },
+  {
+    "id": "T-1029",
+    "partner": "Copperleaf Money",
+    "subject": "Payouts on hold, source of funds request",
+    "body": "Outgoing payouts on our business account have been on compliance hold since Oct 7. We got an email asking for source of funds documentation, but it is generic and does not say which documents are acceptable. We sent our last 3 months of bank statements and a business registration extract on Oct 8 and have had no reply since.\n\nWho should we talk to? Payouts to our contractors are delayed.",
+    "created_at": "2026-10-10T09:15:00Z"
+  },
+  {
+    "id": "T-1030",
+    "partner": "Juniper Ledger",
+    "subject": "140 users stuck in verification_pending",
+    "body": "We ran an onboarding campaign on Oct 11 and about 140 users signed up and submitted their KYC documents. All of them are in verification_pending and none have moved in 24 hours. Earlier signups were processed in minutes.\n\nIs the verification queue backed up, or do we need to submit differently? I can send the list of user ids.",
+    "created_at": "2026-10-12T15:30:00Z"
+  },
+  {
+    "id": "T-1031",
+    "partner": "Ironbark Pay",
+    "subject": "Filter transactions by card in the API",
+    "body": "Hi! How do I list only the transactions for one card using the API? I see a card_id parameter mentioned in one place in the docs but it does not seem to work on /v1/transactions. Thanks",
+    "created_at": "2026-10-07T08:20:00Z"
+  },
+  {
+    "id": "T-1032",
+    "partner": "Kestrel Remit",
+    "subject": "Feature request: card.frozen webhook",
+    "body": "We would like a webhook event when a card gets frozen (by us, by the cardholder, or by your fraud system). Today we have to poll for it. Is this on the roadmap? Happy to be a design partner.",
+    "created_at": "2026-10-08T13:45:00Z"
+  },
+  {
+    "id": "T-1033",
+    "partner": "Windmere Digital",
+    "subject": "More networks for stablecoin deposits?",
+    "body": "Do you plan to support stablecoin deposits on additional blockchain networks? Many of our users hold funds on networks that are not on your list. If it is planned, is there a timeline? Just planning our roadmap, no rush.",
+    "created_at": "2026-10-09T15:10:00Z"
+  },
+  {
+    "id": "T-1034",
+    "partner": "Zephyr Stablepay",
+    "subject": "Rotating API keys without downtime",
+    "body": "What is the recommended way to rotate production API keys without downtime? Can two keys be active at the same time during the changeover? I could not find this in the docs.",
+    "created_at": "2026-10-09T09:30:00Z"
+  },
+  {
+    "id": "T-1035",
+    "partner": "Lumen Transfer",
+    "subject": "Simulating declines in sandbox",
+    "body": "Is there a way to test our custom fraud rules in sandbox with simulated declines? I would like to trigger a velocity decline without making 20 real test authorizations.",
+    "created_at": "2026-10-10T12:05:00Z"
+  },
+  {
+    "id": "T-1036",
+    "partner": "Hawthorn Money",
+    "subject": "THIS IS UNACCEPTABLE",
+    "body": "I AM SICK OF THIS. THE CSV EXPORT FROM THE DASHBOARD PUTS THE DATE COLUMN IN A DIFFERENT FORMAT EVERY TIME AND MY FINANCE TEAM HAS TO FIX IT BY HAND. I HAVE ASKED THREE TIMES. IF THIS IS NOT FIXED BY FRIDAY WE ARE MOVING TO ANOTHER PROVIDER. YOUR SUPPORT IS A JOKE.\n\nEVERYTHING ELSE WORKS. BUT THIS IS RIDICULOUS.",
+    "created_at": "2026-10-07T20:10:00Z"
+  },
+  {
+    "id": "T-1037",
+    "partner": "Meridian Pay",
+    "subject": "Heads up on card payments",
+    "body": "Hi team, hope you are having a good week.\n\nProbably nothing, but I wanted to flag that our dashboard has shown a 100% decline rate on card authorizations since about 06:30 UTC. Every attempt comes back with response 96 (system_malfunction), across all merchants and all of our roughly 38,000 active cards. It is about 08:40 now, so a bit over two hours.\n\nNo rush on our side. Whenever someone has a moment to take a look would be great. We will keep an eye on it.\n\nThanks,\nSam",
+    "created_at": "2026-10-12T08:40:00Z"
+  },
+  {
+    "id": "T-1038",
+    "partner": "Cobalt Money",
+    "subject": "Webhook errors and a stuck business verification",
+    "body": "Two things:\n\n1) Your webhook deliveries to us have been failing with HTTP 500 since Tuesday. It is a bug on our side and we are fixing it, but we will need the missed events replayed afterwards (about 300 card.authorized events).\n\n2) Separately, a business customer of ours, usr_b7714, has been in compliance_hold for 6 days after submitting company documents. Their director keeps asking what is missing.\n\nCan you help with both? Thanks.",
+    "created_at": "2026-10-13T09:00:00Z"
+  },
+  {
+    "id": "T-1039",
+    "partner": "Sable Neobank",
+    "subject": "not working",
+    "body": "Hi, things are not working properly since this morning. Our customers are complaining. Can someone look at it? Thanks.",
+    "created_at": "2026-10-13T10:12:00Z"
+  },
+  {
+    "id": "T-1040",
+    "partner": "Ashgrove Banking",
+    "subject": "504 errors from your API",
+    "body": "We are getting 504 Gateway Timeout on every call to your API from our production servers since this morning. We moved to a new data center overnight. Calls from our staging server and from my laptop work fine. The old servers worked until yesterday.\n\nI cannot find anything for these calls in your dashboard logs, so I have no request ids to give you. Our customers cannot create transfers right now.",
+    "created_at": "2026-10-13T12:20:00Z"
   }
 ]
