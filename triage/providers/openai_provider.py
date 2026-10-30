@@ -16,7 +16,7 @@ class OpenAIProvider(LLMProvider):
         if not os.getenv("OPENAI_API_KEY"):
             raise RuntimeError("OPENAI_API_KEY environment variable is not set. Please set it in your .env file.")  
         self.client = OpenAI()
-        self.model = os.getenv("OPENAI_MODEL", "gpt-6-luna")  # Default to gpt-4 if not set
+        self.model = os.getenv("OPENAI_MODEL", "gpt-6-luna")  # Default to gpt-6-luna if not set
 
     def classify(self, prompt: str) -> str:
         response = self.client.chat.completions.create(
@@ -25,6 +25,6 @@ class OpenAIProvider(LLMProvider):
                 {"role": "user", "content": prompt}
             ], 
             response_format={"type": "json_object"},
-            max_completion_tokens=500
+            max_completion_tokens=2500
         )
         return response.choices[0].message.content
