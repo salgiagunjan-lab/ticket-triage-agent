@@ -22,7 +22,7 @@ def build_prompt(ticket):
             "endpoint": "<string or null>",
             "error_code": "<string or null>",
             "request_id": "<string or null>",
-            "event_ids": "a list of every event ID (strings starting with evt_) mentioned in the ticket, or an empty list"
+            "event_ids": ["<string>", ...]
         }},
         "first_step": "<one recommended troubleshooting step>"
     }}
@@ -32,6 +32,7 @@ def build_prompt(ticket):
     The most severe matching priority wins. 
     For classification, judge by impact, not by tone. 
     If there are two problems, classify the more urgent one.
+    event_ids: a list of every event ID (strings starting with evt_) mentioned in the ticket, or an empty list
 
     TAXONOMY AND PRIORITY RULES
     {taxonomy}
