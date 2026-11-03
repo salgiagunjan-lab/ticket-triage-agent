@@ -21,13 +21,13 @@ def build_prompt(ticket):
             "http_status": <integer or null>,
             "endpoint": "<string or null>",
             "error_code": "<string or null>",
-            "request_id": "<string or null>"
+            "request_id": "<string or null>",
+            "event_ids": "a list of every event ID (strings starting with evt_) mentioned in the ticket, or an empty list"
         }},
         "first_step": "<one recommended troubleshooting step>"
     }}
     The category should be one of the categories defined in the Triage taxonomy table below.
     The priority should be one of the priorities defined in the Priority Definitions table below.
-    
     Rules: 
     The most severe matching priority wins. 
     For classification, judge by impact, not by tone. 
